@@ -1,0 +1,12 @@
+<mat-toolbar class="custom-toolbar" color="primary">
+    <mat-toolbar-row>
+      <span>E-Commerce</span>
+      <span class="spacer"></span>
+      <nav>
+        <a mat-button routerLink="/products">Products</a>
+
+        <a mat-button routerLink="/cart" [innerHTML]="'Cart (' + cartItemCount + ')'"></a>
+
+      </nav>
+    </mat-toolbar-row>
+  </mat-toolbar>
