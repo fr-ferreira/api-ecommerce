@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../service/cart-service.service';
-
-
-
+import { ProductService } from '../../service/product.service';
+import { Product } from '../../models/model';
+import { ApiService } from '../../service/api.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -10,15 +10,33 @@ import { CartService } from '../../service/cart-service.service';
 })
 export class SidebarComponent implements OnInit {
   
-  cartItemCount: number = 0;
+  cartItemCount = 0;
+  product: Product | null = null;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private productService: ProductService, private apiService: ApiService,) {}
 
 
   ngOnInit(): void {
-    this.cartService.cart$.subscribe((items) => {
-      this.cartItemCount = items.length;  // Atualiza o número de itens no carrinho
+    const productId: number = 1; // Declare productId locally inside ngOnInit
+    this.apiService.getProductById(productId).subscribe(
+      (product) => {
+        this.product = product; // Store the fetched product
+        console.log(this.product); // You can use this product in your template
+      },
+      (error) => {
+        console.error('Error fetching product:', error);
+      }
+    );
+    
+    this.cartService.getCartItems().subscribe(items => {
+      this.cartItemCount = items.length;
     });
+
+    // Fetch the product (e.g., the last added product to the cart)
+    this.productService.getProductById(1).subscribe(product => {
+      this.product = product;
+    });
+    
   }
 
 }

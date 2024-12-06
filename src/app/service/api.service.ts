@@ -7,7 +7,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Product } from '../models/model';
-
 @Injectable()
 export class ApiService {
   apiUrl = 'https://fakestoreapi.com/';
@@ -58,5 +57,13 @@ export class ApiService {
     this.cartSubject.next(this.cartItems); // Update the cart
   }
 
+  
+  getProductById(id: number): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.apiUrl}products/${id}`);
+  }
+  
+  checkout(cartItems: Product[]): Observable<any> {
+    return this.httpClient.post<any>('http://www.uol.com.br/', { items: cartItems });
+  }
   
 }

@@ -1,0 +1,21 @@
+<div class="cart" *ngIf="cartItems.length > 0;">
+    <h2>Checkout</h2>
+    <div *ngFor="let item of cartItems">
+      <p>{{ item.title }} - R$ {{ item.price }}</p>
+      <img [src]="item.image" alt="{{ item.title }}" width="100">
+    </div>
+  
+    <div>
+      <h3>Total: R$ {{ totalPrice() }}</h3>
+      <button (click)="completePurchase()">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <div *ngIf="cartItems.length === 0">
+    <p>Não há itens no carrinho.</p>
+  </div>
+  
+  <!-- <ng-template #emptyCart>
+    <p>Seu carrinho está vazio. Não há nada para finalizar.</p>
+  </ng-template> -->
+  

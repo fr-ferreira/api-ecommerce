@@ -1,10 +1,16 @@
-<main>
+<main class="cart">
   <div class="products">
     <div *ngFor="let product of products" class="product">
       <span>{{ product.category }}</span>
       <img [src]="product.image" alt="{{ product.title }}" width="180" />
+
+      <!-- <a mat-button routerLink="/checkout">Checkout</a> -->
+
+
+
       <span>{{ product.title }}</span>
       <span>R$ {{ product.price }}</span>
+      
       <button mat-button (click)="addToCart(product)">Add to Cart</button>
     </div>
   </div>

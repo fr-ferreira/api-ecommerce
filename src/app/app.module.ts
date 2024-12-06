@@ -27,19 +27,22 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared.module'; // Importa o SharedModule
 import { FooterComponent } from './components/footer/footer.component';
 import { CartComponent } from './cart/cart.component';
-
+import { ProductViewComponent } from './product-view/product-view.component';
+import { FormsModule } from '@angular/forms'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    ProductViewComponent
   ],
   exports: [
     SidebarComponent,
     FooterComponent,
-    CartComponent
+    CartComponent,
+    ProductViewComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { CartComponent } from './cart/cart.component';
     MatListModule,
     MatTooltipModule,
     MatButtonModule,
+    FormsModule,
     MatMenuModule,
     MatFormFieldModule,
     MatCheckboxModule,
@@ -63,7 +67,6 @@ import { CartComponent } from './cart/cart.component';
     MatProgressBarModule,
     RouterModule,
     BrowserAnimationsModule,
-    RouterModule,
     ProductModule
   ],
   providers: [ApiService],

@@ -11,7 +11,7 @@ import { CartService } from '../service/cart-service.service';
 export class ProductComponent implements OnInit {
   products: Product[] = [];
   visibleForm = false;
-  item: Product = new Product(0, '', '', '', '', '');
+  item: Product = new Product(0, '', '', '', '', 0);
   productAddedResponse: any;
   public isExpanded = false;
 
@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
   submitForm() {
     this.apiService.addProduct(this.item).subscribe((res) => {
       if (res) {
-        this.item = new Product(0, '', '', '', '', '');
+        this.item = new Product(0, '', '', '', '', 0);
         console.log(res);
       }
     });
@@ -71,7 +71,7 @@ export class ProductComponent implements OnInit {
 
   // Cancel adding a product
   cancel() {
-    this.item = new Product(0, '', '', '', '', '');
+    this.item = new Product(0, '', '', '', '', 0);
     this.getProducts();
     this.toggleForm();
   }
